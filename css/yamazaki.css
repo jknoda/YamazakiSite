@@ -23,9 +23,13 @@
 }
 
 .btnassociados{
-    padding-right: 40px;
+    padding-right: 60px !important;
 }
 
 .btnassociados a {
     height: 18px;
+}
+
+.yicons {
+    padding-right: 60px !important;
 }
