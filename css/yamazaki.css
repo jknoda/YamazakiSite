@@ -1,6 +1,6 @@
 .horarios{
     border-radius: 3%;
-    font-size: medium;
+    font-size: 14px;
     background-color: rgb(89, 98, 104);
     color: rgb(220, 223, 92);
     text-align: center;
@@ -12,7 +12,7 @@
 
 
 .endereco{
-    font-size: 12px;
+    font-size: 16px;
     color: white;
     text-align: center;
 }
@@ -24,5 +24,8 @@
 
 .btnassociados{
     padding-right: 40px;
-    padding-bottom: 30px;
+}
+
+.btnassociados a {
+    height: 18px;
 }
