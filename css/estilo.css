@@ -341,19 +341,3 @@ textarea{
 .col-2-3 + .col-1-3, .col-1-3 + .col-2-3{
     margin-left: 2%;
 }
-
-
-.endereco{
-    font-size: 10px;
-    color: white;
-}
-
-.contador{
-    padding-right: 40px;
-    color: white;
-}
-
-.ircv{
-    padding-right: 40px;
-    color: black;
-}

@@ -1,0 +1,26 @@
+.horarios{
+    font-size: medium;
+    background-color: rgb(89, 98, 104);
+    color: rgb(220, 223, 92);
+    text-align: center;
+}
+
+.horarios strong{
+    color:rgb(202, 175, 24);
+}
+
+
+.endereco{
+    font-size: 10px;
+    color: white;
+}
+
+.contador{
+    padding-right: 40px;
+    color: white;
+}
+
+.btnassociados{
+    padding-right: 40px;
+    padding-bottom: 30px;
+}
