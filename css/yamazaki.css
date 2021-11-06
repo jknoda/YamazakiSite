@@ -1,4 +1,5 @@
 .horarios{
+    border-radius: 3%;
     font-size: medium;
     background-color: rgb(89, 98, 104);
     color: rgb(220, 223, 92);
@@ -11,8 +12,9 @@
 
 
 .endereco{
-    font-size: 10px;
+    font-size: 12px;
     color: white;
+    text-align: center;
 }
 
 .contador{
