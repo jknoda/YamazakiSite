@@ -4,6 +4,7 @@
     background-color: rgb(89, 98, 104);
     color: rgb(220, 223, 92);
     text-align: center;
+    width: 60%;
 }
 
 .horarios strong{
@@ -12,7 +13,7 @@
 
 
 .endereco{
-    font-size: 16px;
+    font-size: 18px;
     color: white;
     text-align: center;
 }
@@ -33,6 +34,19 @@
 .yicons {
     padding-right: 60px !important;
 }
+
+.centro {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-content p{
+    margin: 0 0 0.5em;
+}
+
+
 
 .jknoda {
     font-size: 10px !important;
