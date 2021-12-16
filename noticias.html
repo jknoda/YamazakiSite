@@ -36,7 +36,11 @@
                                 var hora = formatoCompleto.substring(formatoCompleto.indexOf("T")+1);
                                 var dadosData = dataFormatada.split("-");
                                 var dataFinal = dadosData[2]+"-"+dadosData[1]+"-"+dadosData[0];
-                                txt = txt + '<label>'+dataFinal+' '+hora.substring(0,8)+'</label><div>'+news[i].NewsTexto+'</div><hr>';
+                                txt = txt + 
+                                    '<label class="newsdata">'+dataFinal+' '+hora.substring(0,8)+'</label>'+
+                                    '<div class="newstexto">'+news[i].NewsTexto+'</div>'+
+                                    '<div class="newsautor">'+news[i].NewsAutor+'</div>'+
+                                    '<hr>';
                             }                                
                             document.getElementById("newstexto").innerHTML = txt;
                         } else {

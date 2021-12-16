@@ -46,6 +46,17 @@
     margin: 0 0 0.5em;
 }
 
+.newsdata {
+    color: red;
+}
+
+.newstexto {
+    color: blue;
+}
+
+.newsautor {
+    color: green;
+}
 
 
 .jknoda {
