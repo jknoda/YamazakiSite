@@ -46,7 +46,25 @@
                     document.getElementById("news").innerHTML = 'error news';
                 };
                 xhr.send(null); 
+                try {
+                    acesso();
+                } finally {
+                    return;
+                }     
             }
+
+            function acesso() {
+                var url = "https://yamazakijudoapi.herokuapp.com/api/acesso/create";
+                var xhr = new XMLHttpRequest();
+                var data = `{
+                    "Origem": "S"
+                    }`;
+                xhr.open("POST", url, true);
+                xhr.setRequestHeader("Accept", "application/json");
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.send(data);
+            }
+
         </script>
         <script type="text/javascript">
             function submitDetailsForm()
