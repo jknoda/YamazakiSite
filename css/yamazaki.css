@@ -58,6 +58,14 @@
     color: green;
 }
 
+.newsimage {
+    width: auto;
+    height: 60px;
+    float: left;
+    border: transparent thin solid;
+    padding: 5px;
+    margin: 0px 10px 10px 0
+}
 
 .jknoda {
     font-size: 10px !important;

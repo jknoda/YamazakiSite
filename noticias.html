@@ -20,6 +20,16 @@
     </head>
     <body onload='initFunction()'>
         <script>
+            function bin2String(array) {
+                var retorno = '';
+                //var j = 0;
+                for(j=0;j<array.length;j++){
+                    retorno = retorno + String.fromCharCode(array[j])
+                }
+                return retorno; // String.fromCharCode.apply(String, array);
+                //return String.fromCharCode.apply(String, array);
+            }
+
             function initFunction() {
                 var url = "https://yamazakijudoapi.herokuapp.com/api/news/getfindall?empidf=1";
                 //var url = "localhost:3003/api/news/findall";
@@ -36,10 +46,31 @@
                                 var hora = formatoCompleto.substring(formatoCompleto.indexOf("T")+1);
                                 var dadosData = dataFormatada.split("-");
                                 var dataFinal = dadosData[2]+"-"+dadosData[1]+"-"+dadosData[0];
+                                var result = "";
+                                if (news[i].NewsImage){
+
+                                    //var reader = new FileReader();
+                                    //reader.readAsDataURL(new Blob(news[i].NewsImage.data));
+                                    //reader.onloadend = function () {
+                                        //result = reader.result;
+                                    //}
+                                    //result = btoa(String.fromCharCode.apply(null, new Uint8Array(news[i].NewsImage.data)));
+
+                                    result = bin2String(news[i].NewsImage.data);
+                                    result = result.substring(22,result.length);
+                            
+                                    //result = '<a href="'+result+'" target="_blank">' +
+                                        //'<img class="newsimage" src="data:image/png;base64,'+result+'"/>' +
+                                        //'</a>';
+                                    result = '<img class="newsimage" src="data:image/png;base64,'+result+'"/>' ;
+                                    //result = news[i].NewsImage.toString('base64');
+                                }                                
                                 txt = txt + 
                                     '<label class="newsdata">'+dataFinal+' '+hora.substring(0,8)+'</label>'+
+                                    '<div>'+result+
                                     '<div class="newstexto">'+news[i].NewsTexto+'</div>'+
                                     '<div class="newsautor">'+news[i].NewsAutor+'</div>'+
+                                    '</div>'+
                                     '<hr>';
                             }                                
                             document.getElementById("newstexto").innerHTML = txt;
