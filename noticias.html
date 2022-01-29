@@ -50,11 +50,11 @@
                                 if (news[i].NewsImage){
 
                                     result = bin2String(news[i].NewsImage.data);
-                                    var pos = result.indexOf("base64,") + 7;
-                                    result = result.substring(pos,result.length);
+                                    //var pos = result.indexOf("base64,") + 7;
+                                    //result = result.substring(pos,result.length);
                             
                                     result = '<a href="newsimage.html?' + news[i].NewsIdf.toString() + '" target="_blank">' +
-                                        '<img class="newsimage" src="data:image/png;base64,'+result+'"/>' +
+                                        '<img class="newsimage" src="'+result+'"/>' +
                                         '</a>';
                                 }                                
                                 txt = txt + 

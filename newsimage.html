@@ -57,10 +57,10 @@
                             var result = "";
                             if (news.NewsImage){
                                 result = binNews2String(news.NewsImage.data);
-                                var pos = result.indexOf("base64,") + 7;
-                                result = result.substring(pos,result.length);
+                                //var pos = result.indexOf("base64,") + 7;
+                                //result = result.substring(pos,result.length);
                         
-                                result = '<img src="data:image/png;base64,'+result+'"/>' ;
+                                result = '<img src="'+result+'"/>' ;
                             }                                
                             txt = txt + 
                                 '<label class="newsdata">'+dataFinal+' '+hora.substring(0,8)+'</label>'+
