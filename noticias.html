@@ -49,22 +49,13 @@
                                 var result = "";
                                 if (news[i].NewsImage){
 
-                                    //var reader = new FileReader();
-                                    //reader.readAsDataURL(new Blob(news[i].NewsImage.data));
-                                    //reader.onloadend = function () {
-                                        //result = reader.result;
-                                    //}
-                                    //result = btoa(String.fromCharCode.apply(null, new Uint8Array(news[i].NewsImage.data)));
-
                                     result = bin2String(news[i].NewsImage.data);
                                     var pos = result.indexOf("base64,") + 7;
                                     result = result.substring(pos,result.length);
                             
-                                    result = '<a href="newsimage.html?' + i.toString() + '" target="_blank">' +
+                                    result = '<a href="newsimage.html?' + news[i].NewsIdf.toString() + '" target="_blank">' +
                                         '<img class="newsimage" src="data:image/png;base64,'+result+'"/>' +
                                         '</a>';
-                                    //result = '<img class="newsimage" src="data:image/png;base64,'+result+'"/>' ;
-                                    //result = news[i].NewsImage.toString('base64');
                                 }                                
                                 txt = txt + 
                                     '<label class="newsdata">'+dataFinal+' '+hora.substring(0,8)+'</label>'+
