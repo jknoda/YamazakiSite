@@ -57,12 +57,13 @@
                                     //result = btoa(String.fromCharCode.apply(null, new Uint8Array(news[i].NewsImage.data)));
 
                                     result = bin2String(news[i].NewsImage.data);
-                                    result = result.substring(22,result.length);
+                                    var pos = result.indexOf("base64,") + 7;
+                                    result = result.substring(pos,result.length);
                             
-                                    //result = '<a href="'+result+'" target="_blank">' +
-                                        //'<img class="newsimage" src="data:image/png;base64,'+result+'"/>' +
-                                        //'</a>';
-                                    result = '<img class="newsimage" src="data:image/png;base64,'+result+'"/>' ;
+                                    result = '<a href="newsimage.html?' + i.toString() + '" target="_blank">' +
+                                        '<img class="newsimage" src="data:image/png;base64,'+result+'"/>' +
+                                        '</a>';
+                                    //result = '<img class="newsimage" src="data:image/png;base64,'+result+'"/>' ;
                                     //result = news[i].NewsImage.toString('base64');
                                 }                                
                                 txt = txt + 

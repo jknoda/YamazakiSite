@@ -1,0 +1,106 @@
+<!doctype html>
+<!-- doctype informa ao agente de usuario a versão do html que deve ser renderizada-->
+<html lang="pt-br">
+    <head>
+        <title>Yamazaki Judô</title>
+        <meta charset="utf-8">
+        <meta name="author" content="jknoda">
+        <meta name="description" content="Site Institucional">
+        <meta name="keywords" content="html5, esporte, judo">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+        
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+        <script type="text/javascript" src="scripts/jquery-3.3.1.min.js"></script>
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/estilo.css">
+        <link rel="stylesheet" href="css/yamazaki.css">
+       
+    </head>
+    <body onload='initNewsFunction()'>
+        <script>
+            function closeNewstab() {
+                if (confirm("Encerra notícia ?")) {
+                    window.close();
+                }
+            }            
+            function binNews2String(array) {
+                var retorno = '';
+                for(j=0;j<array.length;j++){
+                    retorno = retorno + String.fromCharCode(array[j])
+                }
+                return retorno;
+            }
+
+            function initNewsFunction() {
+                const queryString = window.location.search.substring(1);
+                var url = "https://yamazakijudoapi.herokuapp.com/api/news/find";
+                //var url = "localhost:3003/api/news/findall";
+                var xhr = new XMLHttpRequest();
+
+                var data = '{"EmpIdf": 1,"NewsIdf": ' + queryString + '}';
+                xhr.open("POST", url, true);
+                xhr.setRequestHeader("Accept", "application/json");
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.onload = function (e) {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            var news = JSON.parse(xhr.responseText);
+                            var txt = '';
+
+                            var formatoCompleto = news.NewsData;
+                            var dataFormatada = formatoCompleto.substring(0,formatoCompleto.indexOf("T"));
+                            var hora = formatoCompleto.substring(formatoCompleto.indexOf("T")+1);
+                            var dadosData = dataFormatada.split("-");
+                            var dataFinal = dadosData[2]+"-"+dadosData[1]+"-"+dadosData[0];
+                            var result = "";
+                            if (news.NewsImage){
+                                result = binNews2String(news.NewsImage.data);
+                                var pos = result.indexOf("base64,") + 7;
+                                result = result.substring(pos,result.length);
+                        
+                                result = '<img src="data:image/png;base64,'+result+'"/>' ;
+                            }                                
+                            txt = txt + 
+                                '<label class="newsdata">'+dataFinal+' '+hora.substring(0,8)+'</label>'+
+                                '<div>'+result+
+                                '<div class="newstexto">'+news.NewsTexto+'</div>'+
+                                '<div class="newsautor">'+news.NewsAutor+'</div>'+
+                                '</div>'+
+                                '<hr>';
+
+                            document.getElementById("newstexto").innerHTML = txt;
+                        } else {
+                            document.getElementById("newstexto").innerHTML = 'no news';
+                        }
+                    }
+                };
+                xhr.onerror = function (e) {
+                    document.getElementById("newstexto").innerHTML = 'error news';
+                };
+                xhr.send(data); 
+            }
+        </script>
+        <header class="main-header">
+            <a href="index.html" class="main-header-link imagem-link">
+                <img src="images/logo.png" alt="logo yamazaki">
+            </a>
+        </header>
+       
+        <main class="main-content">
+            <section class="main-content-section">
+                <h1 style="text-align: center;">YAMAZAKI JUDÔ</h1>
+                <h3><strong>NOTÍCIA</strong></h3>
+                <div id="newstexto"></div>
+            </section>
+        </main>
+        <footer class="main-footer">
+            <div style="text-align: center;">
+                <section class="btnassociados">
+                    <a href="javascript:closeNewstab();" class="button-default" style="color:white">Fechar</a>
+                </section>
+            </div>
+        </footer>
+    </body>
+</html>
