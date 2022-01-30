@@ -67,6 +67,7 @@
 
         </script>
         <script type="text/javascript">
+            
             function submitDetailsForm()
             {
                 $.ajax({
@@ -94,6 +95,39 @@
                         }
                     });
             }
+            
+
+            /*
+            function submitDetailsForm() {
+                var url = "https://yamazakijudoapi.herokuapp.com/api/email/enviar";
+                var xhr = new XMLHttpRequest();
+                var data = '{'+
+                            '"service":"Gmail",'+
+                            '"user":"yamazakijudosjc@gmail.com",'+
+                            '"pass":"12ago2011!",'+
+                            '"from":"Yamazaki Judô <yamazakijudosjc@gmail.com>",'+
+                            '"to":"yamazakijudo@hotmail.com",'+
+                            '"subject": "#ENVIADO DO SITE# ' + $('#form-email')[0][0].value + '",'+
+                            '"cc": "",'+                            
+                            '"text": "#EMAIL# ' + $('#form-email')[0][1].value+' ... #MENSAGEM# ' + $('#form-email')[0][2].value + '",'+
+                            '"html": ""' +
+                        '}'
+                xhr.open("POST", url, true);
+                xhr.setRequestHeader("Accept", "application/json");
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.onload = function (e) {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            alert('Email enviado com sucesso!');
+                        }
+                    }
+                };
+                xhr.onerror = function (e) {
+                    alert('Falha ao enviar email, por favor utilize outro meio para enviar o email!');
+                };
+                xhr.send(data); 
+            }
+            */
         </script>
 
         <header class="main-header">
