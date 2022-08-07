@@ -7,22 +7,22 @@
         <meta name="author" content="jknoda">
         <meta name="description" content="Site Institucional">
         <meta name="keywords" content="html5, esporte, judo">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+        
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
         <script type="text/javascript" src="scripts/jquery-3.3.1.min.js"></script>
 
-		<!-- Bootstrap CSS -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
         <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/yamazaki.css">        
+        <link rel="stylesheet" href="css/estilo.css">
+        <link rel="stylesheet" href="css/yamazaki.css">
+       
     </head>
     <body onload='initFunction()'>
         <script>
             function initFunction() {
                 var url = "https://yamazakijudoapi.herokuapp.com/api/news/getfindall?empidf=1";
+                //var url = "localhost:3003/api/news/findall";
                 var xhr = new XMLHttpRequest();
                 xhr.open("GET", url, true);
                 xhr.onload = function (e) {
@@ -90,46 +90,67 @@
                         }
                     });
             }
+            
+
+            /*
+            function submitDetailsForm() {
+                var url = "https://yamazakijudoapi.herokuapp.com/api/email/enviar";
+                var xhr = new XMLHttpRequest();
+                var data = '{'+
+                            '"service":"Gmail",'+
+                            '"user":"yamazakijudosjc@gmail.com",'+
+                            '"pass":"12ago2011!",'+
+                            '"from":"Yamazaki Judô <yamazakijudosjc@gmail.com>",'+
+                            '"to":"yamazakijudo@hotmail.com",'+
+                            '"subject": "#ENVIADO DO SITE# ' + $('#form-email')[0][0].value + '",'+
+                            '"cc": "",'+                            
+                            '"text": "#EMAIL# ' + $('#form-email')[0][1].value+' ... #MENSAGEM# ' + $('#form-email')[0][2].value + '",'+
+                            '"html": ""' +
+                        '}'
+                xhr.open("POST", url, true);
+                xhr.setRequestHeader("Accept", "application/json");
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.onload = function (e) {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            alert('Email enviado com sucesso!');
+                        }
+                    }
+                };
+                xhr.onerror = function (e) {
+                    alert('Falha ao enviar email, por favor utilize outro meio para enviar o email!');
+                };
+                xhr.send(data); 
+            }
+            */
         </script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-        <nav class="navbar navbar-dark bg-dark navbar-expand-md">
-            <a href="index.html">
-                <img src="images/logo.png" width="40" height="40" class="d-inline-block align-top" alt="">
+        <header class="main-header">
+            <a href="index.html" class="main-header-link imagem-link">
+                <img src="images/logo.png" alt="logo yamazaki">
             </a>
-            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse" id="navbar">
-                <ul class="navbar-nav">
-                  <li class="nav-item active">
-                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                  </li>
-                  <li class="nav-item">
-                    <li class="nav-item"><a href="fotos.html" class="nav-link">Fotos</a></li>
-                  </li>
-                  <li class="nav-item">
-                    <li class="nav-item"><a href="biblioteca.html" class="nav-link">Biblioteca</a></li>
-                  </li>
-                  <li class="nav-item">
-                    <li class="nav-item"><a href="noticias.html" class="nav-link">Notícias</a></li>
-                  </li>
-                  <li class="nav-item">
-                    <li class="nav-item"><a href="https://yamazakijudo.herokuapp.com/" class="nav-link">Aplicativo</a></li>
-                  </li>
-                </ul>
-            </div>                  
-        </nav>
-
+            <a href="./download/Proposta_pedagogica_v1.pdf" 
+                target="_blank" class="icon-link"
+                title="proposta pedagógica yamazaki">                
+                <span class="download">Proposta Pedagógica
+                <i class="far fa-file-pdf"></i></span>
+            </a>
+            <a href="./download/Termo_de_privacidade_v11ABR22.pdf" 
+                target="_blank" class="icon-link"
+                title="termo de privacidade yamazaki">
+                <span class="download">Termo Privacidade
+                <i class="far fa-file-pdf"></i></span>
+            </a>
+            <a href="./download/Manual_APP_YamazakiJudo.pdf" 
+                target="_blank" class="icon-link"
+                title="manual app yamazaki">
+                <span class="download">Manual app
+                <i class="far fa-file-pdf"></i></span>
+            </a>
+        </header>
+        
         <main class="main-content">
-<!--             <div class="container-fluid" style="padding: 10px;">
-                <a class="btn btn-info" href="index.html" role="button">Home</a>
-                <a class="btn btn-info" href="fotos.html" role="button">Fotos</a>
-                <a class="btn btn-secondary" href="biblioteca.html" role="button">Biblioteca</a>
-                <a class="btn btn-secondary" href="noticias.html" role="button">Notícias</a>
-                <a class="btn btn-success" href="https://yamazakijudo.herokuapp.com/" role="button">Aplicativo</a>
-            </diV>
- -->            <section class="main-content-section">
+            <section class="main-content-section">
                 <h1 style="text-align: center;">YAMAZAKI JUDÔ</h1>
                 <a href="noticias.html" class="main-header-link imagem-link">
                     <marquee>Últimas notícias:&nbsp;<label id="news"></label></marquee>
@@ -144,44 +165,69 @@
                 <div class="centro">
                     <section class="horarios">                            
                         <p>
-                        Av. Brasil, 146 - Monte Castelo - São José dos Campos - SP
-                        <br><br>
-                        <strong>MANHÃ - TERÇA-FEIRA e QUINTA-FEIRA</strong><br>
-                        08h30~09h30 JUDÔ KIDS (de 4 á 10 anos)<br>
-                        <strong>NOITE -  SEGUNDA-FEIRA a SEXTA-FEIRA</strong><br>
-                        18h00~19h00 JUDÔ KIDS (de 4 á 10 anos)<br>
-                        19h00~20h30 JUDÔ ADULTO (acima 10 anos)
+            Av. Brasil, 146 - Monte Castelo - São José dos Campos - SP
+            <br><br>
+            <strong>MANHÃ - TERÇA-FEIRA e QUINTA-FEIRA</strong><br>
+            08h30~09h30 JUDÔ KIDS (de 4 á 10 anos)<br>
+            <strong>NOITE -  SEGUNDA-FEIRA a SEXTA-FEIRA</strong><br>
+            18h00~19h00 JUDÔ KIDS (de 4 á 10 anos)<br>
+            19h00~20h30 JUDÔ ADULTO (acima 10 anos)
                         </p>
                     </section>
                 </div>
+                <h3><strong>FOTOS</strong></h3>
+                <div class="row">
+                    <div class="col-1-3">
+						<article class="recent-works-card">
+                            <a class="imagem-link" href="images/treinos/image27.png">
+                                <img src="images/treinos/image27.png" alt="kids" width="220" height="150">
+                            </a>
+                            <p class="recent-works-card-title">Treino Kids</p>
+                        </article>
+                    </div>
+                    <div class="col-1-3">
+						<article class="recent-works-card">
+                            <a class="imagem-link" href="images/treinos/image48.png">
+                                <img src="images/treinos/image48.png" alt="adulto" width="220" height="150">
+                            </a>
+                            <p class="recent-works-card-title">Treino Adulto</p>
+                        </article>
+                    </div>					
+                    <div class="col-1-3">
+						<article class="recent-works-card">
+                            <a class="imagem-link" href="images/treinos/image03.jpg">
+                                <img src="images/treinos/image03.jpg" alt="tecnico" width="220" height="150">
+                            </a>
+                            <p class="recent-works-card-title">Treino Tecnico</p>
+                        </article>
+                    </div>					
+                </div> <!-- row -->
             </section>
-            <div class="container-fluid">
-                <div class="col-12 col-md-6">
+            <div class="row">
+                <div class="col-2">
                     <h3>Localização</h3>
                     <div class="maps">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3667.71327963192!2d-45.875919385029306!3d-23.18066248487323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cc4a305a63b111%3A0xde0848c5ecb419fc!2sAv.%20Brasil%2C%20146%20-%20Monte%20Castelo%2C%20S%C3%A3o%20Jos%C3%A9%20dos%20Campos%20-%20SP%2C%2012215-000!5e0!3m2!1spt-BR!2sbr!4v1637847429254!5m2!1spt-BR!2sbr" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
                     </div>
                 </div>
-                <div class="col-12 col-md-6">
+                <div class="col-2">
                     <h3>Entre em contato</h3>
                     <div class="divemail clearfix">
                         <form id="form-email" method="post" onsubmit='submitDetailsForm()'>
-                            <div class="row">
-                                <div class="col-12">
-                                    <label for="nome">Seu nome</label>
-                                    <input placeholder="nome completo" type="text" name="name" id="nome" maxlength="100">
-                                </div>
-                                <div class="col-12">
-                                    <label for="email">Seu email</label>
-                                    <input placeholder="email" type="email" name="email" id="email" maxlength="200">
-                                </div>
-                                <div class="col-12">
-                                    <label for="mensagem">Digite sua mensagem/sugestão</label>
-                                    <textarea placeholder="mensagem" name="message" id="mensagem"></textarea>
-                                </div>
-                                <div class="col-12">
-                                    <input type="submit" value="Enviar" class="mailbutton">
-                                </div>
+                            <div class="mailrow-2">
+                                <label for="nome">Seu nome</label>
+                                <input placeholder="nome completo" type="text" name="name" id="nome" maxlength="100">
+                            </div>
+                            <div class="mailrow-2">
+                                <label for="email">Seu email</label>
+                                <input placeholder="email" type="email" name="email" id="email" maxlength="200">
+                            </div>
+                            <div class="mailrow-1">
+                                <label for="mensagem">Digite sua mensagem/sugestão</label>
+                                <textarea placeholder="mensagem" name="message" id="mensagem"></textarea>
+                            </div>
+                            <div class="mailrow-1">
+                                <input type="submit" value="Enviar" class="mailbutton">
                             </div>
                         </form>
                     </div>
@@ -190,6 +236,12 @@
         </main>
         <footer class="main-footer">
             <div style="text-align: center;">
+                <section class="btnnoticias">
+                    <a href="noticias.html" title="Últimas notícias" class="button-default" style="color:white">Notícias</a>
+                </section>
+                <section class="btnassociados">
+                    <a href="https://yamazakijudo.herokuapp.com/" title="Acesso dos associados" class="button-default" style="color:white">Associados</a>
+                </section>
                 <ul class="ul-icons yicons">           
                     <li><a href="https://wa.me/5512982574433" target="_blank" class="icon-link" title="(12)98257-4433"><i class="fab fa-whatsapp"></i></a></li>     
                     <li><a href="https://www.instagram.com/yamazakijudo/" target="_blank" class="icon-link"><span class="hidden">Instagram</span><i class="fab fa-instagram"></i></a></li>
@@ -200,7 +252,6 @@
             <div class="jknoda">
                 <a href="http://www.jknoda.com.br" target="_blank" title="www.jknoda.com.br">by jknoda</a>
             </div>
-        </footer>    
-   
+        </footer>
     </body>
 </html>

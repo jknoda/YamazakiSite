@@ -1,3 +1,6 @@
+.logo{
+    width: 35px;
+}
 .horarios{
     border-radius: 3%;
     font-size: 14px;
@@ -130,5 +133,47 @@
 
 .download
 {
-    color: white;
+    color: black;
+
+}
+
+.ul-icons{
+    list-style-type: none;
+    padding-left: 0; 
+    padding-right: 40px;
+}
+.ul-icons li{
+    display: inline-block;
+    font-size: 2em;
+    color: #49bf9d;
+}
+.imagem-link{
+    border: 0;
+}
+
+.main-footer{
+    padding: 5px;
+    box-sizing: border-box;
+    text-align: right;
+}
+.main-footer a{
+    text-decoration: none;
+}
+.main-footer a:hover{
+    color: #49bf9d;   
+}
+.main-footer .ul-icons a{
+    font-size: .55em;   
+    border-bottom: none;
+    padding: 5px;
+}
+
+.nav-link{
+    margin-left: 15px !important;
+}
+
+@media screen and (max-width: 500px) {
+    .logo{
+        width: 100px;
+    }
 }
