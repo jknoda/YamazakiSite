@@ -7,7 +7,7 @@
     background-color: rgb(89, 98, 104);
     color: rgb(220, 223, 92);
     text-align: center;
-    width: 60%;
+    padding: 10px;
 }
 
 .horarios strong{
@@ -49,6 +49,16 @@
     justify-content: center;
     align-items: center;
 }
+
+.centralizar{
+    text-align: center;
+}
+
+.centralizar2{
+    text-align: center;
+    width: 90%;
+}
+
 
 .main-content p{
     margin: 0 0 0.5em;
@@ -151,6 +161,10 @@
     border: 0;
 }
 
+.fotos{
+    text-align: center;
+}
+
 .main-content{
      padding: 10px;
     box-sizing: border-box;
@@ -180,4 +194,13 @@
     .logo{
         width: 100px;
     }
+
+    .centralizar{
+        text-align: center;
+        width: 100%;
+    }
+    .centralizar2{
+        text-align: center;
+        width: 100%;
+    }    
 }
