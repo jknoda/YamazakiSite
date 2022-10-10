@@ -22,7 +22,7 @@
     <body onload='initFunction()'>
         <script>
             function initFunction() {
-                var url = "https://yamazakijudoapi.herokuapp.com/api/news/getfindall?empidf=1";
+                var url = "https://yamazakiapi.herokuapp.com/api/news/getfindall?empidf=1";
                 var xhr = new XMLHttpRequest();
                 xhr.open("GET", url, true);
                 xhr.onload = function (e) {
@@ -54,7 +54,7 @@
             }
 
             function acesso() {
-                var url = "https://yamazakijudoapi.herokuapp.com/api/acesso/create";
+                var url = "https://yamazakiapi.herokuapp.com/api/acesso/create";
                 var xhr = new XMLHttpRequest();
                 var data = `{
                     "Origem": "S"
@@ -71,7 +71,7 @@
             function submitDetailsForm()
             {
                 $.ajax({
-                        url: 'https://yamazakijudoapi.herokuapp.com/api/email/enviar',
+                        url: 'https://yamazakiapi.herokuapp.com/api/email/enviar',
                         type: 'POST',
                         dataType: 'json',
                         async: false,
@@ -115,7 +115,7 @@
                     <li class="nav-item"><a href="noticias.html" class="nav-link">Notícias</a></li>
                   </li>
                   <li class="nav-item">
-                    <li class="nav-item"><a href="https://yamazakijudo.herokuapp.com/" class="nav-link">Sistema</a></li>
+                    <li class="nav-item"><a href="https://yamazakiapp.herokuapp.com/" class="nav-link">Sistema</a></li>
                   </li>
                 </ul>
             </div>                  
@@ -127,7 +127,7 @@
                 <a class="btn btn-info" href="fotos.html" role="button">Fotos</a>
                 <a class="btn btn-secondary" href="biblioteca.html" role="button">Biblioteca</a>
                 <a class="btn btn-secondary" href="noticias.html" role="button">Notícias</a>
-                <a class="btn btn-success" href="https://yamazakijudo.herokuapp.com/" role="button">Aplicativo</a>
+                <a class="btn btn-success" href="https://yamazakiapp.herokuapp.com/" role="button">Aplicativo</a>
             </diV>
  -->            <section class="main-content-section">
                 <h1 style="text-align: center;">YAMAZAKI JUDÔ</h1>
