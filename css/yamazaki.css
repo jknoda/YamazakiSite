@@ -166,7 +166,7 @@
 }
 
 .main-content{
-     padding: 10px;
+    padding: 10px;
     box-sizing: border-box;
 }
 .main-footer{
@@ -190,6 +190,10 @@
     margin-left: 15px !important;
 }
 
+.app{
+    display: none;
+}
+
 @media screen and (max-width: 500px) {
     .logo{
         width: 100px;
@@ -203,4 +207,8 @@
         text-align: center;
         width: 100%;
     }    
+    .app{
+        display: block;
+    }
+   
 }
