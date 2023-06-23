@@ -24,17 +24,23 @@
     <body onload='initFunction()'>
         <script>
             function getIP() {
+                var IP = "0";
                 var xmlhttp = new XMLHttpRequest();
-                xmlhttp.open("GET", 'http://meuip.com/api/meuip.php');
-                xmlhttp.send();
+                xmlhttp.open("GET", 'https://api.ipify.org?format=jsonp&callback=getIP');
                 xmlhttp.onload = function(e) {
-                    return xmlhttp.response;
+                    if (xmlhttp.readyState === 4) {
+                        if (xmlhttp.status === 200) {
+                            IP = xmlhttp.response;
+                        }
+                    }
+                    acesso(IP);
                 }
-                return '0';
+                xmlhttp.send(null); 
             }
 
             function initFunction() {
                 var url = "https://yamazakiapi.herokuapp.com/api/news/getfindall?empidf=1";
+                //var url = "http://localhost:3003/api/news/getfindall?empidf=1";
                 var xhr = new XMLHttpRequest();
                 xhr.open("GET", url, true);
                 xhr.onload = function (e) {
@@ -59,19 +65,19 @@
                 };
                 xhr.send(null); 
                 try {
-                    acesso();
+                    getIP();
                 } finally {
                     return;
                 }     
             }
 
-            function acesso() {
-                var IP = getIP();
+            function acesso(IP) {
                 var url = "https://yamazakiapi.herokuapp.com/api/acesso/create";
+                //var url = "http://localhost:3003/api/acesso/create";
                 var xhr = new XMLHttpRequest();
                 var data = `{
                     "Origem": "S",
-                    "IP": IP
+                    "IP": "`+IP+`"
                     }`;
                 xhr.open("POST", url, true);
                 xhr.setRequestHeader("Accept", "application/json");
