@@ -22,6 +22,16 @@
     </head>
     <body onload='initFunction()'>
         <script>
+            function getIP() {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("GET", 'http://meuip.com/api/meuip.php');
+                xmlhttp.send();
+                xmlhttp.onload = function(e) {
+                    return xmlhttp.response;
+                }
+                return '0';
+            }
+
             function initFunction() {
                 var url = "https://yamazakiapi.herokuapp.com/api/news/getfindall?empidf=1";
                 var xhr = new XMLHttpRequest();
@@ -55,10 +65,12 @@
             }
 
             function acesso() {
+                var IP = getIP();
                 var url = "https://yamazakiapi.herokuapp.com/api/acesso/create";
                 var xhr = new XMLHttpRequest();
                 var data = `{
-                    "Origem": "S"
+                    "Origem": "S",
+                    "IP": IP
                     }`;
                 xhr.open("POST", url, true);
                 xhr.setRequestHeader("Accept", "application/json");
