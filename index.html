@@ -72,12 +72,13 @@
             }
 
             function acesso(IP) {
+                var IPAux = IP.replace(/["]/g, '');
                 var url = "https://yamazakiapi.herokuapp.com/api/acesso/create";
                 //var url = "http://localhost:3003/api/acesso/create";
                 var xhr = new XMLHttpRequest();
                 var data = `{
                     "Origem": "S",
-                    "IP": '`+IP+`'
+                    "IP": "`+IPAux+`"
                     }`;
                 xhr.open("POST", url, true);
                 xhr.setRequestHeader("Accept", "application/json");
