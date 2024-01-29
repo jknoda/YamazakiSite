@@ -1,261 +1,270 @@
 <!doctype html>
 <!-- doctype informa ao agente de usuario a versão do html que deve ser renderizada-->
 <html lang="pt-br">
-    <head>
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
-        <title>Yamazaki Judô</title>
-        <meta charset="utf-8">
-        <meta name="author" content="jknoda">
-        <meta name="description" content="Site Institucional">
-        <meta name="keywords" content="html5, esporte, judo">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">-->
-        <script src="https://kit.fontawesome.com/0ee99cf256.js" crossorigin="anonymous"></script>
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-        <script type="text/javascript" src="scripts/jquery-3.3.1.min.js"></script>
+<head>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+    <title>Yamazaki Judô</title>
+    <meta charset="utf-8">
+    <meta name="author" content="jknoda">
+    <meta name="description" content="Site Institucional">
+    <meta name="keywords" content="html5, esporte, judo">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<!-- Bootstrap CSS -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">-->
+    <script src="https://kit.fontawesome.com/0ee99cf256.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script type="text/javascript" src="scripts/jquery-3.3.1.min.js"></script>
 
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/yamazaki.css">        
-    </head>
-    <body onload='initFunction()'>
-        <script>
-            function getIP() {
-                var IP = "0";
-                var xmlhttp = new XMLHttpRequest();
-                xmlhttp.open("GET", 'https://api.ipify.org?format=jsonp&callback=getIP');
-                xmlhttp.onload = function(e) {
-                    if (xmlhttp.readyState === 4) {
-                        if (xmlhttp.status === 200) {
-                            IP = xmlhttp.response;
-                        }
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/yamazaki.css">
+</head>
+
+<body onload='initFunction()'>
+    <script>
+        function getIP() {
+            var IP = "0";
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("GET", 'https://api.ipify.org?format=jsonp&callback=getIP');
+            xmlhttp.onload = function (e) {
+                if (xmlhttp.readyState === 4) {
+                    if (xmlhttp.status === 200) {
+                        IP = xmlhttp.response;
                     }
-                    acesso(IP);
                 }
-                xmlhttp.send(null); 
+                acesso(IP);
             }
+            xmlhttp.send(null);
+        }
 
-            function initFunction() {
-                var url = "https://yamazakiapi.herokuapp.com/api/news/getfindall?empidf=1";
-                //var url = "http://localhost:3003/api/news/getfindall?empidf=1";
-                var xhr = new XMLHttpRequest();
-                xhr.open("GET", url, true);
-                xhr.onload = function (e) {
-                    if (xhr.readyState === 4) {
-                        if (xhr.status === 200) {
-                            var news = JSON.parse(xhr.responseText);
-                            var txt = '';
-                            for( i=0;i<news.length;i++){
-                                txt = txt + news[i].NewsTitulo;
-                                if (i+1 < news.length){
-                                    txt = txt + '; ';
-                                }
-                            }                                
-                            document.getElementById("news").innerHTML = txt;                            
-                        } else {
-                            document.getElementById("news").innerHTML = 'no news';
+        function initFunction() {
+            var url = "https://yamazakiapi.herokuapp.com/api/news/getfindall?empidf=1";
+            //var url = "http://localhost:3003/api/news/getfindall?empidf=1";
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.onload = function (e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        var news = JSON.parse(xhr.responseText);
+                        var txt = '';
+                        for (i = 0; i < news.length; i++) {
+                            txt = txt + news[i].NewsTitulo;
+                            if (i + 1 < news.length) {
+                                txt = txt + '; ';
+                            }
                         }
+                        document.getElementById("news").innerHTML = txt;
+                    } else {
+                        document.getElementById("news").innerHTML = 'no news';
                     }
-                };
-                xhr.onerror = function (e) {
-                    document.getElementById("news").innerHTML = 'error news';
-                };
-                xhr.send(null); 
-                try {
-                    getIP();
-                } finally {
-                    return;
-                }     
+                }
+            };
+            xhr.onerror = function (e) {
+                document.getElementById("news").innerHTML = 'error news';
+            };
+            xhr.send(null);
+            try {
+                getIP();
+            } finally {
+                return;
             }
+        }
 
-            function acesso(IP) {
-                var IPAux = IP.replace(/["]/g, '');
-                var url = "https://yamazakiapi.herokuapp.com/api/acesso/create";
-                //var url = "http://localhost:3003/api/acesso/create";
-                var xhr = new XMLHttpRequest();
-                var data = `{
+        function acesso(IP) {
+            var IPAux = IP.replace(/["]/g, '');
+            var url = "https://yamazakiapi.herokuapp.com/api/acesso/create";
+            //var url = "http://localhost:3003/api/acesso/create";
+            var xhr = new XMLHttpRequest();
+            var data = `{
                     "Origem": "S",
-                    "IP": "`+IPAux+`"
+                    "IP": "`+ IPAux + `"
                     }`;
-                xhr.open("POST", url, true);
-                xhr.setRequestHeader("Accept", "application/json");
-                xhr.setRequestHeader("Content-Type", "application/json");
-                xhr.send(data);
-            }
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader("Accept", "application/json");
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.send(data);
+        }
 
-        </script>
-        <script type="text/javascript">
-            
-            function submitDetailsForm()
-            {
-                $.ajax({
-                        url: 'https://yamazakiapi.herokuapp.com/api/email/enviar',
-                        type: 'POST',
-                        dataType: 'json',
-                        async: false,
-                        data: {
-                            cc: '',
-                            subject: '#ENVIADO DO SITE# ' + $('#form-email')[0][0].value,
-                            text: '#EMAIL# ' + $('#form-email')[0][1].value+'\n' +
-                                '#MENSAGEM# ' + $('#form-email')[0][2].value,
-                            html: ''
-                        },
-                        success: function(data){
-                            alert('Email enviado com sucesso!');
-                        },
-                        error: function(data){
-                            alert('Falha ao enviar email, por favor utilize outro meio para enviar o email!');
-                        }
-                    });
-            }
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    </script>
+    <script type="text/javascript">
 
-        <nav class="navbar navbar-dark bg-dark navbar-expand-md">
-            <a href="index.html">
-                <img src="images/logo.png" width="40" height="40" class="d-inline-block align-top" style="margin-left: 10px;" alt="">
+        function submitDetailsForm() {
+            $.ajax({
+                url: 'https://yamazakiapi.herokuapp.com/api/email/enviar',
+                type: 'POST',
+                dataType: 'json',
+                async: false,
+                data: {
+                    cc: '',
+                    subject: '#ENVIADO DO SITE# ' + $('#form-email')[0][0].value,
+                    text: '#EMAIL# ' + $('#form-email')[0][1].value + '\n' +
+                        '#MENSAGEM# ' + $('#form-email')[0][2].value,
+                    html: ''
+                },
+                success: function (data) {
+                    alert('Email enviado com sucesso!');
+                },
+                error: function (data) {
+                    alert('Falha ao enviar email, por favor utilize outro meio para enviar o email!');
+                }
+            });
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <nav class="navbar navbar-dark bg-dark navbar-expand-md">
+        <a href="index.html">
+            <img src="images/logo.png" width="40" height="40" class="d-inline-block align-top"
+                style="margin-left: 10px;" alt="">
+        </a>
+        <a href="https://yamazakiapp.herokuapp.com" class="app">
+            <i class="fa-solid fa-rocket"></i>
+        </a>
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar" style="margin-right: 10px;">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbar">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                </li>
+                <li class="nav-item">
+                <li class="nav-item"><a href="fotos.html" class="nav-link">Fotos</a></li>
+                </li>
+                <li class="nav-item">
+                <li class="nav-item"><a href="biblioteca.html" class="nav-link">Biblioteca</a></li>
+                </li>
+                <li class="nav-item">
+                <li class="nav-item"><a href="noticias.html" class="nav-link">Notícias</a></li>
+                </li>
+                <li class="nav-item">
+                <li class="nav-item"><a href="https://yamazakiapp.herokuapp.com/" class="nav-link">Sistema</a></li>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content centralizar">
+        <section class="main-content-section">
+            <h1 style="text-align: center;">YAMAZAKI JUDÔ</h1>
+            <a href="noticias.html" class="main-header-link imagem-link">
+                <marquee>Últimas notícias:&nbsp;<label id="news"></label></marquee>
             </a>
-            <a href="https://yamazakiapp.herokuapp.com" class="app">
-                <i class="fa-solid fa-rocket"></i>
-            </a>
-            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar" style="margin-right: 10px;" >
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse" id="navbar">
-                <ul class="navbar-nav">
-                  <li class="nav-item active">
-                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                  </li>
-                  <li class="nav-item">
-                    <li class="nav-item"><a href="fotos.html" class="nav-link">Fotos</a></li>
-                  </li>
-                  <li class="nav-item">
-                    <li class="nav-item"><a href="biblioteca.html" class="nav-link">Biblioteca</a></li>
-                  </li>
-                  <li class="nav-item">
-                    <li class="nav-item"><a href="noticias.html" class="nav-link">Notícias</a></li>
-                  </li>
-                  <li class="nav-item">
-                    <li class="nav-item"><a href="https://yamazakiapp.herokuapp.com/" class="nav-link">Sistema</a></li>
-                  </li>
-                </ul>
-            </div>                  
-        </nav>
+            <h3><strong>OBJETIVOS ESTRATÉGICOS</strong></h3>
 
-        <main class="main-content centralizar">
-<!--             <div class="container-fluid" style="padding: 10px;">
-                <a class="btn btn-info" href="index.html" role="button">Home</a>
-                <a class="btn btn-info" href="fotos.html" role="button">Fotos</a>
-                <a class="btn btn-secondary" href="biblioteca.html" role="button">Biblioteca</a>
-                <a class="btn btn-secondary" href="noticias.html" role="button">Notícias</a>
-                <a class="btn btn-success" href="https://yamazakiapp.herokuapp.com/" role="button">Aplicativo</a>
-            </diV>
- -->            <section class="main-content-section">
-                <h1 style="text-align: center;">YAMAZAKI JUDÔ</h1>
-                <a href="noticias.html" class="main-header-link imagem-link">
-                    <marquee>Últimas notícias:&nbsp;<label id="news"></label></marquee>
-                </a>
-                <h3><strong>OBJETIVOS ESTRATÉGICOS</strong></h3>
-
-                <div class="card">
-                    <div class="card-header">
-                        MISSÃO
-                    </div>
-                    <div class="card-body">
-                        <p>Formar atletas dentro e fora dos tatames.</p>
-                    </div>
+            <div class="card">
+                <div class="card-header">
+                    MISSÃO
                 </div>
-
-                <div class="card">
-                    <div class="card-header">
-                        VISÃO
-                    </div>
-                    <div class="card-body">
-                        <p>Ser referência no treinamento de base, princípios e fundamentos do judô.</p>
-                    </div>
+                <div class="card-body">
+                    <p>Formar atletas dentro e fora dos tatames.</p>
                 </div>
+            </div>
 
-                <div class="card">
-                    <div class="card-header">
-                        VALOR
-                    </div>
-                    <div class="card-body">
-                        <p>Muito além de um simples esporte, a Associação Yamazaki de Judô tem como principal objetivo ensinar a essência do judô como disciplina, respeito, empatia com o próximo e principalmente uma paixão pelo esporte.</p>
-                    </div>
+            <div class="card">
+                <div class="card-header">
+                    VISÃO
                 </div>
-            </section>
-            <br>
-            <section class="main-content-section">
-                <div class="centro">
-                    <section class="horarios">                            
-                        <p>
+                <div class="card-body">
+                    <p>Ser referência no treinamento de base, princípios e fundamentos do judô.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    VALOR
+                </div>
+                <div class="card-body">
+                    <p>Muito além de um simples esporte, a Associação Yamazaki de Judô tem como principal objetivo
+                        ensinar a essência do judô como disciplina, respeito, empatia com o próximo e principalmente uma
+                        paixão pelo esporte.</p>
+                </div>
+            </div>
+        </section>
+        <br>
+        <section class="main-content-section">
+            <div class="centro">
+                <section class="horarios">
+                    <p>
                         Av. Brasil, 146 - Monte Castelo - São José dos Campos - SP
                         <br><br>
                         <strong>MANHÃ - TERÇA-FEIRA e QUINTA-FEIRA</strong><br>
                         08h30~09h30 JUDÔ KIDS (de 4 a 10 anos)<br>
-                        <strong>NOITE -  SEGUNDA-FEIRA a SEXTA-FEIRA</strong><br>
+                        <strong>NOITE - SEGUNDA-FEIRA a SEXTA-FEIRA</strong><br>
                         18h00~19h00 JUDÔ KIDS (de 4 a 10 anos)<br>
                         19h00~20h30 JUDÔ ADULTO (acima 10 anos)
-                        </p>
-                    </section>
+                    </p>
+                </section>
+            </div>
+            <div class="card-header">
+                <strong>TRAGA SEU FILHO PARA UMA AULA EXPERIMENTAL</strong>
+            </div>
+        </section>
+        <div class="container-fluid">
+            <br>
+            <div class="centralizar2">
+                <h3>LOCALIZAÇÃO</h3>
+                <div class="maps">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3667.71327963192!2d-45.875919385029306!3d-23.18066248487323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cc4a305a63b111%3A0xde0848c5ecb419fc!2sAv.%20Brasil%2C%20146%20-%20Monte%20Castelo%2C%20S%C3%A3o%20Jos%C3%A9%20dos%20Campos%20-%20SP%2C%2012215-000!5e0!3m2!1spt-BR!2sbr!4v1637847429254!5m2!1spt-BR!2sbr"
+                        width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen=""
+                        class="centralizar"></iframe>
                 </div>
-                <div class="card-header">
-                    <strong>TRAGA SEU FILHO PARA UMA AULA EXPERIMENTAL</strong>
-                </div>
-            </section>
-            <div class="container-fluid">
-                <br>
-                <div class="centralizar2">
-                    <h3>LOCALIZAÇÃO</h3>
-                    <div class="maps">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3667.71327963192!2d-45.875919385029306!3d-23.18066248487323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cc4a305a63b111%3A0xde0848c5ecb419fc!2sAv.%20Brasil%2C%20146%20-%20Monte%20Castelo%2C%20S%C3%A3o%20Jos%C3%A9%20dos%20Campos%20-%20SP%2C%2012215-000!5e0!3m2!1spt-BR!2sbr!4v1637847429254!5m2!1spt-BR!2sbr" 
-                        width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen="" class="centralizar"></iframe>
-                    </div>
-                </div>
-                <br>
-                <div class="centralizar2">
-                    <h3>Entre em contato</h3>
-                    <div class="divemail clearfix ">
-                        <form id="form-email" method="post" onsubmit='submitDetailsForm()'>
-                            <div class="row">
-                                <div class="col-12">
-                                    <label for="nome">Seu nome</label>
-                                    <input placeholder="nome completo" type="text" name="name" id="nome" maxlength="100">
-                                </div>
-                                <div class="col-12">
-                                    <label for="email">Seu email</label>
-                                    <input placeholder="email" type="email" name="email" id="email" maxlength="200">
-                                </div>
-                                <div class="col-12">
-                                    <label for="mensagem">Digite sua mensagem/sugestão</label>
-                                    <textarea placeholder="mensagem" name="message" id="mensagem"></textarea>
-                                </div>
-                                <div class="col-12">
-                                    <input type="submit" value="Enviar" class="mailbutton">
-                                </div>
+            </div>
+            <br>
+            <div class="centralizar2">
+                <h3>Entre em contato</h3>
+                <div class="divemail clearfix ">
+                    <form id="form-email" method="post" onsubmit='submitDetailsForm()'>
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="nome">Seu nome</label>
+                                <input placeholder="nome completo" type="text" name="name" id="nome" maxlength="100">
                             </div>
-                        </form>
-                    </div>
+                            <div class="col-12">
+                                <label for="email">Seu email</label>
+                                <input placeholder="email" type="email" name="email" id="email" maxlength="200">
+                            </div>
+                            <div class="col-12">
+                                <label for="mensagem">Digite sua mensagem/sugestão</label>
+                                <textarea placeholder="mensagem" name="message" id="mensagem"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <input type="submit" value="Enviar" class="mailbutton">
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </main>
-        <footer class="main-footer">
-            <div style="text-align: left; margin-left: 10px;">
-                <ul class="ul-icons yicons">           
-                    <li><a href="https://wa.me/5512982574433" target="_blank" class="icon-link" title="(12)98257-4433"><i class="fab fa-whatsapp"></i></a></li>     
-                    <li><a href="https://www.instagram.com/yamazakijudo/" target="_blank" class="icon-link"><span class="hidden">Instagram</span><i class="fab fa-instagram"></i></a></li>
-                    <li><a href="http://facebook.com/yamazakijudo" target="_blank" class="icon-link"><span class="hidden">Facebook</span><i class="fab fa-facebook-square"></i></a></li>
-                    <li><a href="mailto:yamazakijudo@hotmail.com" target="_blank" class="icon-link" title="yamazakijudo@hotmail.com"><span class="hidden">Email</span><i class="fa fa-envelope"></i></a></li>
-                    <li><a href="https://yamazakiapp.herokuapp.com/" target="_blank" class="icon-link" title="Aplicativo"><i class="fa-solid fa-rocket"></i></a></li>     
-                </ul>
-            </div>
-            <div class="jknoda">
-                <a href="http://www.jknoda.com.br" target="_blank" title="www.jknoda.com.br">by jknoda</a>
-            </div>
-        </footer>    
-   
-    </body>
+        </div>
+    </main>
+    <footer class="main-footer">
+        <div style="text-align: left; margin-left: 10px;">
+            <ul class="ul-icons yicons">
+                <li><a href="https://wa.me/5512982574433" target="_blank" class="icon-link" title="(12)98257-4433"><i
+                            class="fab fa-whatsapp"></i></a></li>
+                <li><a href="https://www.instagram.com/yamazakijudo/" target="_blank" class="icon-link"><span
+                            class="hidden">Instagram</span><i class="fab fa-instagram"></i></a></li>
+                <li><a href="http://facebook.com/yamazakijudo" target="_blank" class="icon-link"><span
+                            class="hidden">Facebook</span><i class="fab fa-facebook-square"></i></a></li>
+                <li><a href="mailto:yamazakijudo@hotmail.com" target="_blank" class="icon-link"
+                        title="yamazakijudo@hotmail.com"><span class="hidden">Email</span><i
+                            class="fa fa-envelope"></i></a></li>
+                <li><a href="https://yamazakiapp.herokuapp.com/" target="_blank" class="icon-link" title="Aplicativo"><i
+                            class="fa-solid fa-rocket"></i></a></li>
+            </ul>
+        </div>
+        <div class="jknoda">
+            <a href="http://www.jknoda.com.br" target="_blank" title="www.jknoda.com.br">by jknoda</a>
+        </div>
+    </footer>
+
+</body>
+
 </html>
