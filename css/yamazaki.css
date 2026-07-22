@@ -169,6 +169,12 @@
     padding: 10px;
     box-sizing: border-box;
 }
+
+.exame-divider{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .main-footer{
     padding: 5px;
     box-sizing: border-box;
